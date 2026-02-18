@@ -6,9 +6,11 @@
 }
 
 :root {
-    --primary-color: #2563eb;
-    --primary-dark: #1e40af;
-    --secondary-color: #f59e0b;
+    --primary-color: #0066cc;
+    --primary-dark: #004c99;
+    --primary-light: #3385d6;
+    --secondary-color: #00a86b;
+    --accent-color: #ff6b35;
     --text-dark: #1f2937;
     --text-light: #6b7280;
     --background: #ffffff;
@@ -54,6 +56,17 @@ body {
     cursor: pointer;
 }
 
+.logo img {
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -89,7 +102,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0066cc 0%, #00a86b 100%);
     color: white;
     padding: 120px 0 100px;
     text-align: center;
@@ -257,7 +270,7 @@ body {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0066cc 0%, #00a86b 100%);
     color: white;
     padding: 80px 0;
     text-align: center;
@@ -302,6 +315,22 @@ body {
 .info-item p {
     color: var(--text-light);
     font-size: 1.1rem;
+}
+
+.info-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-item a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.info-item em {
+    font-size: 0.9rem;
+    color: var(--text-light);
 }
 
 /* Contact Form */
@@ -397,6 +426,49 @@ body {
 
 .footer-bottom p {
     opacity: 0.6;
+}
+
+/* Footer Logo */
+.footer-logo {
+    height: 40px;
+    width: auto;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer-section a:hover {
+    opacity: 1;
 }
 
 /* Responsive Design */
