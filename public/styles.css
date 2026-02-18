@@ -57,7 +57,7 @@ body {
 }
 
 .logo img {
-    height: 50px;
+    height: 70px;
     width: auto;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -430,10 +430,9 @@ body {
 
 /* Footer Logo */
 .footer-logo {
-    height: 40px;
+    height: 50px;
     width: auto;
     margin-bottom: 1rem;
-    filter: brightness(0) invert(1);
 }
 
 /* Social Links */
@@ -469,6 +468,28 @@ body {
 
 .footer-section a:hover {
     opacity: 1;
+}
+
+.legal-text {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* Footer Disclaimer */
+.footer-disclaimer {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.footer-disclaimer p {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.6;
 }
 
 /* Responsive Design */
