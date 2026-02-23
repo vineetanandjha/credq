@@ -230,6 +230,59 @@ body {
     line-height: 1.7;
 }
 
+/* Loan Services Section */
+.loan-services {
+    padding: 100px 0;
+    background: white;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--gray-50);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.service-item:hover {
+    background: var(--primary-light);
+    color: white;
+}
+
+.service-item .checkmark {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-item:hover .checkmark {
+    color: white;
+}
+
+.service-item h4 {
+    font-size: 1.125rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.service-item:hover h4 {
+    color: white;
+}
+
 /* Why Choose Section */
 .why-choose {
     padding: 100px 0;
