@@ -35,51 +35,58 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        if (contactForm.action) {
-            // Form is wired to Formspree - validate and clear after successful submission
-            // Validate required fields
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value;
-            const consent = document.querySelector('input[name="consent"]').checked;
-            
-            if (!name || !email || !service || !message || !consent) {
-                alert('Please fill in all required fields.');
-                e.preventDefault();
-                return;
-            }
-            
-            // Clear form after a brief delay (allows submission to proceed)
-            setTimeout(() => {
-                contactForm.reset();
-                // Restore phone placeholder
-                document.getElementById('phone').value = '04';
-            }, 100);
-            
-            return;
-        }
-        
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Fallback handler (if no action attribute)
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            service: document.getElementById('service').value,
-            message: document.getElementById('message').value
-        };
+        // Validate required fields
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value;
+        const consent = document.querySelector('input[name="consent"]').checked;
         
-        if (!formData.name || !formData.email || !formData.message) {
+        if (!name || !email || !service || !message || !consent) {
             alert('Please fill in all required fields.');
             return;
         }
         
-        console.log('Form submitted:', formData);
-        alert(`Thank you for contacting us, ${formData.name}! We'll get back to you soon.`);
-        contactForm.reset();
+        try {
+            // Send form data to Formspree
+            const response = await fetch('https://formspree.io/f/mlgwzgva', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    service: service,
+                    message: message,
+                    consent: 'yes'
+                })
+            });
+            
+            if (response.ok) {
+                // Hide form and show success message
+                contactForm.style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Reset form values for next time (if user clicks back)
+                contactForm.reset();
+                document.getElementById('phone').value = '04';
+            } else {
+                alert('There was an error submitting your form. Please try again.');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            alert('There was an error submitting your form. Please try again.');
+        }
     });
 }
 
