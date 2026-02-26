@@ -37,11 +37,33 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         if (contactForm.action) {
+            // Form is wired to Formspree - validate and clear after successful submission
+            // Validate required fields
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            const consent = document.querySelector('input[name="consent"]').checked;
+            
+            if (!name || !email || !service || !message || !consent) {
+                alert('Please fill in all required fields.');
+                e.preventDefault();
+                return;
+            }
+            
+            // Clear form after a brief delay (allows submission to proceed)
+            setTimeout(() => {
+                contactForm.reset();
+                // Restore phone placeholder
+                document.getElementById('phone').value = '04';
+            }, 100);
+            
             return;
         }
+        
         e.preventDefault();
         
-        // Get form data
+        // Fallback handler (if no action attribute)
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
@@ -50,26 +72,14 @@ if (contactForm) {
             message: document.getElementById('message').value
         };
         
-        // Simple validation
         if (!formData.name || !formData.email || !formData.message) {
             alert('Please fill in all required fields.');
             return;
         }
         
-        // Here you would typically send the data to a backend or email service
-        // For now, we'll just show a success message
         console.log('Form submitted:', formData);
-        
-        // Show success message
         alert(`Thank you for contacting us, ${formData.name}! We'll get back to you soon.`);
-        
-        // Reset form
         contactForm.reset();
-        
-        // In production, you might want to:
-        // 1. Send to Firebase Firestore
-        // 2. Use Firebase Cloud Functions to send email
-        // 3. Integrate with an email service like SendGrid
     });
 }
 
