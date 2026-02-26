@@ -184,18 +184,19 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/mlgwzgva" method="POST">
+                        <input type="hidden" name="_subject" value="CredQ Website Lead">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" placeholder="Your Email" required>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" placeholder="Phone Number">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
                         </div>
                         <div class="form-group">
-                            <select id="service" required>
+                            <select id="service" name="service" required>
                                 <option value="">Select a Service</option>
                                 <option value="residential">Residential Loan</option>
                                 <option value="commercial">Commercial Loan</option>
@@ -206,7 +207,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" rows="4" placeholder="Tell us about your needs" required></textarea>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your needs" required></textarea>
+                        </div>
+                        <div class="form-group consent">
+                            <label class="consent-label">
+                                <input type="checkbox" name="consent" required>
+                                I consent to be contacted by email or phone.
+                            </label>
                         </div>
                         <button type="submit" class="btn-primary btn-large">Send Message</button>
                     </form>
@@ -267,6 +274,15 @@
             </div>
         </div>
     </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/message/WJ4AEAB5ZMPPP1" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+        <span class="whatsapp-text">Talk to us</span>
+        <span class="whatsapp-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img" focusable="false">
+                <path d="M16 3C9.373 3 4 8.149 4 14.5c0 2.366.792 4.553 2.146 6.357L4.5 29l8.371-1.587C14.505 28.438 15.242 28.5 16 28.5c6.627 0 12-5.149 12-11.5S22.627 3 16 3zm0 22.5c-1.057 0-2.093-.171-3.077-.509l-.549-.187-4.96.939.948-4.681-.36-.531C6.873 18.83 6 16.702 6 14.5 6 9.262 10.486 5 16 5s10 4.262 10 9.5S21.514 25.5 16 25.5zm5.232-6.705c-.285-.143-1.684-.828-1.943-.923-.259-.096-.449-.143-.638.143-.19.285-.732.923-.898 1.113-.166.19-.331.214-.616.071-.285-.143-1.205-.442-2.296-1.41-.849-.756-1.421-1.689-1.588-1.974-.166-.285-.018-.44.125-.582.128-.127.285-.331.427-.497.143-.166.19-.285.285-.474.095-.19.048-.357-.024-.5-.071-.143-.638-1.543-.874-2.116-.23-.556-.464-.48-.638-.489-.166-.008-.357-.01-.548-.01-.19 0-.5.071-.761.357-.261.285-.997.975-.997 2.38 0 1.405 1.021 2.763 1.163 2.954.143.19 2.01 3.07 4.87 4.303.681.293 1.212.468 1.626.599.683.217 1.305.186 1.796.113.548-.081 1.684-.689 1.922-1.355.238-.666.238-1.237.166-1.355-.071-.119-.261-.19-.547-.333z" />
+            </svg>
+        </span>
+    </a>
 
     <script src="script.js"></script>
 </body>
