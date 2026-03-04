@@ -762,13 +762,14 @@ body {
 /* Footer Legal Links */
 .footer-legal-links {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.5rem 1.25rem;
+    gap: 0.5rem 1rem;
     list-style: none;
     padding: 0;
     margin: 0.5rem 0 0 0;
+    overflow-x: auto;
 }
 
 .footer-legal-links li {
@@ -788,6 +789,12 @@ body {
     opacity: 1;
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+    .footer-content {
+        grid-template-columns: 1.2fr 1fr 1fr 1.8fr;
+    }
 }
 
 /* Footer Disclaimer */
@@ -942,6 +949,8 @@ body {
     }
 
     .footer-legal-links {
+        flex-wrap: wrap;
+        overflow-x: visible;
         justify-content: center;
         gap: 0.5rem 0.9rem;
     }
