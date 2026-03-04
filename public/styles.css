@@ -535,6 +535,34 @@ body {
     line-height: 1.8;
 }
 
+.policy-content {
+    max-width: 900px;
+}
+
+.policy-content h2 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.policy-content p {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.policy-content ul {
+    margin: 0 0 1.25rem 1.5rem;
+}
+
+.policy-content li {
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
 .about-values {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
