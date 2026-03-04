@@ -763,6 +763,8 @@ body {
 .footer-legal-links {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
     gap: 0.5rem 1.25rem;
     list-style: none;
     padding: 0;
@@ -938,6 +940,11 @@ body {
         grid-template-columns: 1fr;
         text-align: center;
     }
+
+    .footer-legal-links {
+        justify-content: center;
+        gap: 0.5rem 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -961,5 +968,9 @@ body {
     .why-choose,
     .contact {
         padding: 60px 0;
+    }
+
+    .footer-legal-links {
+        gap: 0.35rem 0.75rem;
     }
 }
