@@ -1,4 +1,10 @@
 {
+  "functions": {
+    "source": "functions"
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  },
   "hosting": {
     "public": "public",
     "ignore": [
@@ -6,8 +12,71 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "/ads",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/ads/index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/first-home",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/investment",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/refinance",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ],
     "cleanUrls": true,
     "rewrites": [
+      {
+        "source": "/ads/**",
+        "destination": "/ads/index.html"
+      },
+      {
+        "source": "/first-home",
+        "destination": "/ads/index.html"
+      },
+      {
+        "source": "/investment",
+        "destination": "/ads/index.html"
+      },
+      {
+        "source": "/refinance",
+        "destination": "/ads/index.html"
+      },
       {
         "source": "**",
         "destination": "/index.html"

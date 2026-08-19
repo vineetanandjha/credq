@@ -85,6 +85,14 @@ body {
     color: var(--primary-color);
 }
 
+.nav-menu a.btn-primary {
+    color: #ffffff;
+}
+
+.nav-menu a.btn-primary:hover {
+    color: #ffffff;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -293,13 +301,7 @@ body {
 .intent-card p {
     color: var(--text-light);
     line-height: 1.7;
-    margin-bottom: 1rem;
-}
-
-.intent-card a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 700;
+    margin-bottom: 0;
 }
 
 .lead-magnets {
@@ -342,7 +344,7 @@ body {
 
 .contact-actions {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
 }
@@ -352,10 +354,11 @@ body {
     flex-direction: column;
     gap: 0.4rem;
     align-items: flex-start;
-    padding: 1rem 1.1rem;
+    padding: 1.1rem 1.2rem;
     border-radius: 14px;
     background: white;
-    border: 1px solid var(--gray-200);
+    border: 1px solid rgba(0, 102, 204, 0.12);
+    border-top: 4px solid rgba(0, 102, 204, 0.28);
     text-decoration: none;
     color: var(--text-dark);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -1482,6 +1485,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        padding-bottom: 84px;
+    }
+
     .nav-menu {
         display: none;
     }

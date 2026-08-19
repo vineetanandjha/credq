@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortgage Broker Sydney | Borrowing Power Calculator | CredQ</title>
-    <meta name="description" content="CredQ helps Australians compare home loans, refinancing, investment loans and low deposit options. Use our borrowing power calculator and get a same-day free assessment.">
+    <title>Home Loans, Borrowing Power & Refinancing Support | CredQ</title>
+    <meta name="description" content="CredQ helps Australians compare home loans, refinancing, investment loans and low deposit options. Use our borrowing power calculator and request a free assessment.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://credq.com.au/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Mortgage Broker Sydney | Borrowing Power Calculator | CredQ">
-    <meta property="og:description" content="Calculate your borrowing power, compare lenders and get a same-day free assessment from CredQ.">
+    <meta property="og:title" content="Home Loans, Borrowing Power & Refinancing Support | CredQ">
+    <meta property="og:description" content="Calculate your borrowing power, compare lenders and request a free assessment from CredQ.">
     <meta property="og:url" content="https://credq.com.au/">
     <meta property="og:image" content="https://credq.com.au/logo.png">
     <meta property="og:site_name" content="CredQ">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mortgage Broker Sydney | Borrowing Power Calculator | CredQ">
-    <meta name="twitter:description" content="Calculate your borrowing power, compare lenders and get a same-day free assessment from CredQ.">
+    <meta name="twitter:title" content="Home Loans, Borrowing Power & Refinancing Support | CredQ">
+    <meta name="twitter:description" content="Calculate your borrowing power, compare lenders and request a free assessment from CredQ.">
     <meta name="twitter:image" content="https://credq.com.au/logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="logo.png">
@@ -40,7 +40,7 @@
                 "postalCode": "2762",
                 "addressCountry": "AU"
             },
-            "areaServed": ["Sydney", "NSW", "Australia"],
+            "areaServed": ["Australia"],
             "sameAs": [
                 "https://www.facebook.com/credq.finance",
                 "https://www.linkedin.com/company/credqfinance",
@@ -58,7 +58,7 @@
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#borrow-calculator">Borrowing Power</a></li>
+                    <li><a href="/borrowing-power-calculator">Borrowing Power</a></li>
                     <li><a href="#intent-pages">Loan Types</a></li>
                     <li><a href="/about-us">About Us</a></li>
                     <li><a href="/cashback-offers">Cashback Offers</a></li>
@@ -73,100 +73,15 @@
         </div>
     </nav>
 
-    <section id="home" class="hero hero-split">
+    <section id="home" class="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <p class="hero-eyebrow">Mortgage broker in Sydney and NSW</p>
-                    <h1 class="hero-title">How much can I borrow? Start with a fast estimate and a free assessment</h1>
-                    <p class="hero-subtitle">Use CredQ's borrowing power calculator to get an indicative range in seconds. Then unlock the full estimate with your email and mobile number so we can send your same-day assessment.</p>
-                    <ul class="hero-points">
-                        <li>Compare owner-occupier, refinance, investor and low-deposit options.</li>
-                        <li>Access 40+ lenders across major banks and non-bank options.</li>
-                        <li>Get a short, clear response without a long back-and-forth.</li>
-                    </ul>
-                    <div class="hero-buttons">
-                        <a href="#borrow-calculator" class="btn-primary btn-large">How much can I borrow?</a>
-                        <a href="#intent-pages" class="btn-secondary btn-large">Explore loan types</a>
-                    </div>
-                </div>
-                <div class="calculator-card" id="borrow-calculator">
-                    <div class="calculator-header">
-                        <p class="calculator-eyebrow">Borrowing power calculator</p>
-                        <h2>Get a same-day borrowing estimate</h2>
-                        <p>Step 1 is quick. Step 2 unlocks the full result and sends it to you.</p>
-                    </div>
-                    <form id="borrowCalculatorForm" class="calculator-form">
-                        <div class="calculator-step" data-calculator-step="1">
-                            <div class="form-group">
-                                <input type="number" name="annualIncome" placeholder="Annual household income" min="0" step="1000" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="number" name="monthlyDebts" placeholder="Monthly debt commitments" min="0" step="100" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="number" name="deposit" placeholder="Deposit available" min="0" step="1000" required>
-                            </div>
-                            <div class="form-group">
-                                <select name="loanType" required>
-                                    <option value="">Select loan type</option>
-                                    <option value="owner-occupier">Owner-occupier purchase</option>
-                                    <option value="refinance">Refinance</option>
-                                    <option value="investor">Investment loan</option>
-                                    <option value="low-deposit">Low deposit loan</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="postcode" placeholder="Postcode or suburb" required>
-                            </div>
-                            <button type="submit" class="btn-primary btn-large" data-calculator-submit>See my estimate</button>
-                        </div>
-                        <div class="calculator-step is-hidden" data-calculator-step="2" hidden>
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder="Your name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Email address" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" name="phone" placeholder="Mobile number" required>
-                            </div>
-                            <div class="form-group consent">
-                                <label class="consent-label">
-                                    <input type="checkbox" name="consent" required>
-                                    I consent to being contacted about my estimate.
-                                </label>
-                            </div>
-                            <button type="submit" class="btn-primary btn-large">Unlock full estimate</button>
-                        </div>
-                    </form>
-                    <div class="calculator-result" aria-live="polite">
-                        <p class="calculator-eyebrow">Indicative result</p>
-                        <h3 id="calculatorResultValue">Enter your details to unlock your estimate.</h3>
-                        <p id="calculatorResultCopy">We’ll show the full borrowing range after we capture your email and mobile number.</p>
-                    </div>
-                    <div id="calculatorSuccessMessage" class="success-message" style="display: none; margin-top: 1rem;">
-                        <h3>Estimate sent</h3>
-                        <p>Your borrowing estimate has been sent. We’ll follow up with next steps shortly.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="trust-strip" aria-label="Trust signals">
-                <div class="trust-item">
-                    <strong>CR 577075</strong>
-                    <span>Principal broker credential and licensed advice</span>
-                </div>
-                <div class="trust-item">
-                    <strong>40+ lenders</strong>
-                    <span>Broad lender access across bank and non-bank options</span>
-                </div>
-                <div class="trust-item">
-                    <strong>Same-day response</strong>
-                    <span>Fast follow-up on business days where possible</span>
-                </div>
-                <div class="trust-item">
-                    <strong>Google reviews</strong>
-                    <span>Use verified client feedback to build trust before booking</span>
+            <div class="hero-content" style="max-width: 860px; margin: 0 auto; text-align: center;">
+                <p class="hero-eyebrow">Home loan support across Australia</p>
+                <h1 class="hero-title">Home loan guidance with clear, practical next steps</h1>
+                <p class="hero-subtitle">CredQ helps buyers, homeowners and investors compare lender options and move forward with confidence.</p>
+                <div class="hero-buttons" style="justify-content: center;">
+                    <a href="#contact" class="btn-primary btn-large">Get My Free Assessment</a>
+                    <a href="#intent-pages" class="btn-secondary btn-large">Explore loan types</a>
                 </div>
             </div>
         </div>
@@ -175,94 +90,30 @@
     <section id="intent-pages" class="intent-section">
         <div class="container">
             <div class="section-header">
-                <h2>Choose the page that matches your goal</h2>
-                <p>Each page has one clear CTA: get a free assessment.</p>
+                <h2>Choose the loan support you need</h2>
+                <p>Select your scenario to get tailored guidance and request a free assessment.</p>
             </div>
             <div class="intent-grid">
                 <article class="intent-card">
                     <div class="service-icon">🏡</div>
                     <h3>First Home Buyers</h3>
                     <p>Understand your deposit, borrowing power and the schemes that may help you get into the market sooner.</p>
-                    <a href="/first-home-buyers">Get My Free Assessment</a>
                 </article>
                 <article class="intent-card">
                     <div class="service-icon">🔁</div>
                     <h3>Refinancing</h3>
                     <p>Check whether switching lenders can lower your repayments, improve your cash flow or unlock equity.</p>
-                    <a href="/refinancing">Get My Free Assessment</a>
                 </article>
                 <article class="intent-card">
                     <div class="service-icon">🏢</div>
                     <h3>Investment Loans</h3>
                     <p>Review rental income, tax considerations and the lender policies that matter for investors.</p>
-                    <a href="/investment-loans">Get My Free Assessment</a>
                 </article>
                 <article class="intent-card">
                     <div class="service-icon">📉</div>
                     <h3>Low Deposit Loans</h3>
                     <p>See if a lower deposit path could work for your situation, subject to lender and scheme rules.</p>
-                    <a href="/low-deposit-loans">Get My Free Assessment</a>
                 </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="lead-magnets">
-        <div class="container">
-            <div class="section-header">
-                <h2>Local mortgage broker pages</h2>
-                <p>Browse council and city landing pages for Sydney, Blacktown City Council and The Hills Shire.</p>
-            </div>
-            <div class="magnet-grid">
-                <article class="magnet-card">
-                    <p class="magnet-meta">Sydney</p>
-                    <h3>Mortgage Broker Sydney</h3>
-                    <p>Local mortgage support for buyers, refinancers and investors across Sydney.</p>
-                    <a href="/sydney-mortgage-broker" class="btn-primary">View Sydney page</a>
-                </article>
-                <article class="magnet-card">
-                    <p class="magnet-meta">Council hub</p>
-                    <h3>Blacktown City Council Suburbs</h3>
-                    <p>Jump to suburb-specific mortgage pages across Blacktown City Council locations.</p>
-                    <a href="/blacktown-city-council-mortgage-broker" class="btn-primary">View Blacktown suburbs</a>
-                </article>
-                <article class="magnet-card">
-                    <p class="magnet-meta">Council hub</p>
-                    <h3>The Hills Shire Suburbs</h3>
-                    <p>Browse suburb pages across The Hills Shire, including shared-boundary suburb notes.</p>
-                    <a href="/hills-shire-council-mortgage-broker" class="btn-primary">View Hills Shire suburbs</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Mortgage Solutions</h2>
-                <p>Tailored support for buyers, refinancers and investors.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏡</div>
-                    <h3>Home Purchase</h3>
-                    <p>Buy with confidence using a strategy that matches your deposit, income and timeline.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💰</div>
-                    <h3>Refinancing</h3>
-                    <p>Check if a lender switch can reduce repayments, improve flexibility or release equity.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3>Investment Loans</h3>
-                    <p>Structure your investor loan with lender policies, cash flow and serviceability in mind.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✅</div>
-                    <h3>Pre-Approval</h3>
-                    <p>Get ready for auction or private sale with a clear pre-approval strategy.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -270,8 +121,8 @@
     <section class="why-choose">
         <div class="container">
             <div class="section-header">
-                <h2>Why clients book CredQ</h2>
-                <p>Simple advice, broad lender choice and a process built to move quickly.</p>
+                <h2>Why clients love CredQ</h2>
+                <p>We do not just help with loans. We act as your mortgage planner, consultant and trusted advisor at every step.</p>
             </div>
             <div class="features-grid">
                 <div class="feature">
@@ -291,8 +142,8 @@
                 </div>
                 <div class="feature">
                     <div class="feature-number">04</div>
-                    <h3>Clear next steps</h3>
-                    <p>You get a practical plan, not a wall of jargon, so the process feels easier to follow.</p>
+                    <h3>Trusted strategic advice</h3>
+                    <p>You get a practical mortgage plan, not sales talk, so each decision is easier to understand.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-number">05</div>
@@ -338,34 +189,11 @@
         </div>
     </section>
 
-    <section class="lead-magnets">
-        <div class="container">
-            <div class="section-header">
-                <h2>Lead magnets that convert</h2>
-                <p>Offer something useful in exchange for contact details and keep the next step simple.</p>
-            </div>
-            <div class="magnet-grid">
-                <article class="magnet-card">
-                    <p class="magnet-meta">Free PDF checklist</p>
-                    <h3>Home Loan Approval Checklist 2026</h3>
-                    <p>Give buyers a clear list of documents and actions before they apply, then follow up with a tailored assessment.</p>
-                    <a href="#contact" class="btn-primary">Request the checklist</a>
-                </article>
-                <article class="magnet-card">
-                    <p class="magnet-meta">Savings report</p>
-                    <h3>Refinance Savings Report</h3>
-                    <p>Let homeowners estimate the value of a switch and turn interest into a concrete monthly savings conversation.</p>
-                    <a href="#contact" class="btn-primary">Request my savings report</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
     <section class="scheme-section alt">
         <div class="container">
             <div class="section-header">
                 <h2>Instant contact options</h2>
-                <p>If someone is ready to act, make it easy to call, chat or book.</p>
+                <p>When you are ready, choose the contact option that suits you best.</p>
             </div>
             <div class="contact-actions">
                 <a class="contact-action" href="tel:0470388310">
@@ -375,10 +203,6 @@
                 <a class="contact-action" href="https://wa.me/message/WJ4AEAB5ZMPPP1" target="_blank" rel="noopener">
                     <strong>WhatsApp</strong>
                     <span>Send a quick message when you want a fast reply.</span>
-                </a>
-                <a class="contact-action" href="sms:0470388310">
-                    <strong>SMS callback</strong>
-                    <span>Request a call back without filling out a long form.</span>
                 </a>
                 <a class="contact-action" href="https://calendly.com/mortgage-credq/30min" target="_blank" rel="noopener">
                     <strong>Book a call</strong>
@@ -392,7 +216,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Common questions</h2>
-                <p>Quick answers to the questions buyers, refinancers and investors usually ask first.</p>
+                <p>Quick answers to the questions buyers, homeowners and investors usually ask first.</p>
             </div>
             <div class="faq-list">
                 <details class="faq-item">
@@ -447,7 +271,7 @@
                         <h3>📅 Schedule Meeting</h3>
                         <p><a href="https://calendly.com/mortgage-credq/30min" target="_blank" rel="noopener">Book a consultation with me</a></p>
                     </div>
-                    <div class="lead-form-note">Serving Sydney, Western Sydney, Parramatta, Blacktown, Hills District, Penrith and surrounding NSW suburbs.</div>
+                    <div class="lead-form-note">Serving clients across Australia with online and phone support.</div>
                 </div>
                 <div class="contact-form">
                     <form id="leadForm">
@@ -523,11 +347,11 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#borrow-calculator">Borrowing Power</a></li>
+                        <li><a href="/borrowing-power-calculator">Borrowing Power</a></li>
                         <li><a href="/first-home-buyers">First Home Buyers</a></li>
-                        <li><a href="/refinancing">Refinancing</a></li>
-                        <li><a href="/sydney-mortgage-broker">Mortgage Broker Sydney</a></li>
-                        <li><a href="/parramatta-mortgage-broker">Mortgage Broker Parramatta</a></li>
+                        <li><a href="/first-home">First Home</a></li>
+                        <li><a href="/investment">Investment</a></li>
+                        <li><a href="/refinance">Refinance</a></li>
                         <li><a href="/cashback-offers">Cashback Offers</a></li>
                     </ul>
                 </div>
