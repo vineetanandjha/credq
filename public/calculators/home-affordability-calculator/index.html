@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Affordability Calculator | CredQ</title>
+    <meta name="description" content="Calculate your home affordability based on deposit, repayment budget and living expenses.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://credq.com.au/calculators/home-affordability-calculator">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Home Affordability Calculator | CredQ">
+    <meta property="og:description" content="Find your home buying budget and understand affordability based on deposit and repayment capacity.">
+    <meta property="og:url" content="https://credq.com.au/calculators/home-affordability-calculator">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .calculator-section { padding: 60px 0; background: #f8f9fa; }
+        .calculator-container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .calculator-input { margin: 20px 0; }
+        .calculator-input label { display: block; font-weight: 600; margin-bottom: 8px; }
+        .calculator-input input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        .calculator-result { margin-top: 30px; padding: 20px; background: #f0f8ff; border-left: 4px solid #0066cc; }
+        .calculator-result-value { font-size: 32px; font-weight: 700; color: #0066cc; margin: 10px 0; }
+        .calculator-btn { width: 100%; padding: 14px; background: #0066cc; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 20px; }
+        .calculator-btn:hover { background: #0052a3; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo"><a href="/"><img src="/logo.png" alt="CredQ Logo"></a></div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/first-home-buyers">First Home Buyers</a></li>
+                    <li><a href="/calculators/borrowing-capacity-calculator">Borrowing Power</a></li>
+                    <li><a href="#assessment" class="btn-primary">Get Assessment</a></li>
+                </ul>
+                <div class="hamburger"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="guide-hero">
+        <div class="container">
+            <h1>Home Affordability Calculator</h1>
+            <p>Find your realistic home buying budget by combining your deposit, borrowing power and living expenses.</p>
+        </div>
+    </section>
+
+    <section class="calculator-section">
+        <div class="calculator-container">
+            <form id="affordabilityCalc">
+                <h3>Your Deposit</h3>
+                <div class="calculator-input">
+                    <label for="deposit">Savings Available (AUD)</label>
+                    <input type="number" id="deposit" name="deposit" value="100000" min="0" step="10000" required>
+                </div>
+
+                <h3>Your Income & Borrowing</h3>
+                <div class="calculator-input">
+                    <label for="monthlyIncome">Monthly Household Income (AUD)</label>
+                    <input type="number" id="monthlyIncome" name="monthlyIncome" value="8000" min="0" step="1000" required>
+                </div>
+                <div class="calculator-input">
+                    <label for="monthlyExpenses">Monthly Expenses ex. Rent (AUD)</label>
+                    <input type="number" id="monthlyExpenses" name="monthlyExpenses" value="3000" min="0" step="500" required>
+                </div>
+                <div class="calculator-input">
+                    <label for="interestRate">Assumed Interest Rate (%)</label>
+                    <input type="number" id="interestRate" name="interestRate" value="6.5" min="0" max="15" step="0.1" required>
+                </div>
+                <div class="calculator-input">
+                    <label for="loanTerm">Loan Term (Years)</label>
+                    <input type="number" id="loanTerm" name="loanTerm" value="30" min="1" max="50" step="1" required>
+                </div>
+
+                <button type="button" class="calculator-btn" onclick="calculateAffordability()">Calculate Affordability</button>
+            </form>
+
+            <div id="result" class="calculator-result" style="display:none;">
+                <h3>Your Approximate Home Budget</h3>
+                <div class="calculator-result-value" id="homePrice">$0</div>
+                <p><strong>Borrowing Power:</strong> <span id="borrowingPower">$0</span></p>
+                <p><strong>Your Deposit:</strong> <span id="depositDisplay">$0</span></p>
+                <p><strong>Estimated Monthly Repayment:</strong> <span id="monthlyRepayment">$0</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="scheme-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What this calculator shows</h2>
+                <p>Your realistic home buying budget based on savings and income, accounting for lender serviceability rules.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><h3>Deposit</h3><p>Your upfront savings, which reduces the loan amount needed.</p></div>
+                <div class="service-card"><h3>Income</h3><p>Monthly household income used to calculate borrowing power. Lenders typically allow borrowing up to 5–6x annual income.</p></div>
+                <div class="service-card"><h3>Expenses</h3><p>Living costs (excluding rent) to calculate available funds for repayment.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="assessment" class="contact">
+        <div class="container">
+            <div class="section-header"><h2>Ready to buy?</h2><p>Let CredQ refine this estimate with a formal borrowing power assessment.</p></div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item"><h3>📞 Phone</h3><p><a href="tel:0470388310">0470 388 310</a></p></div>
+                    <div class="info-item"><h3>📧 Email</h3><p><a href="mailto:mortgage@credq.com.au">mortgage@credq.com.au</a></p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><img src="/logo.png" alt="CredQ Logo" class="footer-logo"><p>Your trusted partner in mortgage solutions.</p></div>
+                <div class="footer-section"><h4>Calculators</h4><ul><li><a href="/calculators/borrowing-capacity-calculator">Borrowing Capacity</a></li><li><a href="/calculators/loan-repayment-calculator">Loan Repayment</a></li><li><a href="/calculators/home-affordability-calculator">Affordability</a></li><li><a href="/calculators/stamp-duty-calculator">Stamp Duty</a></li></ul></div>
+                <div class="footer-section"><h4>Guides</h4><ul><li><a href="/first-home-buyers">First Home Buyers</a></li><li><a href="/refinancing">Refinancing</a></li></ul></div>
+                <div class="footer-section"><h4>Contact</h4><p><a href="mailto:mortgage@credq.com.au">mortgage@credq.com.au</a></p><p><a href="tel:0470388310">0470 388 310</a></p></div>
+            </div>
+            <div class="footer-bottom"><ul class="footer-legal-links footer-bottom-links"><li><a href="/privacy-policy">Privacy Policy</a></li><li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li></ul><p>&copy; 2026 CredQ Pty Ltd. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/message/WJ4AEAB5ZMPPP1" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><span class="whatsapp-text">Talk to us</span></a>
+    <script>
+        function calculateAffordability() {
+            const deposit = parseFloat(document.getElementById('deposit').value);
+            const income = parseFloat(document.getElementById('monthlyIncome').value);
+            const expenses = parseFloat(document.getElementById('monthlyExpenses').value);
+            const rate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+            const term = parseFloat(document.getElementById('loanTerm').value) * 12;
+            const availableRepayment = (income - expenses) * 0.35;
+            const borrowingPower = availableRepayment * (Math.pow(1 + rate, term) - 1) / (rate * Math.pow(1 + rate, term));
+            const homePrice = deposit + borrowingPower;
+            document.getElementById('homePrice').textContent = '$' + homePrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('borrowingPower').textContent = '$' + borrowingPower.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('depositDisplay').textContent = '$' + deposit.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('monthlyRepayment').textContent = '$' + availableRepayment.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('result').style.display = 'block';
+        }
+        calculateAffordability();
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>

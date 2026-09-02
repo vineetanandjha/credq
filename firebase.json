@@ -66,18 +66,6 @@
         "destination": "/ads/index.html"
       },
       {
-        "source": "/first-home",
-        "destination": "/ads/index.html"
-      },
-      {
-        "source": "/investment",
-        "destination": "/ads/index.html"
-      },
-      {
-        "source": "/refinance",
-        "destination": "/ads/index.html"
-      },
-      {
         "source": "**",
         "destination": "/index.html"
       }

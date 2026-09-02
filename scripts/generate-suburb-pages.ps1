@@ -72,6 +72,7 @@ function New-SuburbPage {
                     <li><a href="/refinancing">Refinancing</a></li>
                     <li><a href="/investment-loans">Investment Loans</a></li>
                     <li><a href="/low-deposit-loans">Low Deposit Loans</a></li>
+                    <li><a href="/seo-resource-links">SEO Resources</a></li>
                     <li><a href="#assessment" class="btn-primary">Get My Free Assessment</a></li>
                 </ul>
                 <div class="hamburger"><span></span><span></span><span></span></div>
@@ -107,10 +108,25 @@ function New-SuburbPage {
             </div>
             $sharedLine
             <div class="services-grid">
-                <div class="service-card"><div class="service-icon">🏡</div><h3>Home purchase</h3><p>Work out your borrowing position and lender options before making a move.</p></div>
-                <div class="service-card"><div class="service-icon">🔁</div><h3>Refinancing</h3><p>Review rates, fees and structure to check whether a refinance is worth it.</p></div>
-                <div class="service-card"><div class="service-icon">🏢</div><h3>Investment loans</h3><p>Compare serviceability and policy differences for investor lending.</p></div>
-                <div class="service-card"><div class="service-icon">📍</div><h3>Local guidance</h3><p>Speak with a broker who supports borrowers in $Suburb and surrounding areas.</p></div>
+                <div class="service-card"><div class="service-icon">🏡</div><h3>Home purchase</h3><p>Work out your borrowing position and lender options before making a move.</p><a href="/borrowing-power-calculator" class="text-link">Check borrowing power</a></div>
+                <div class="service-card"><div class="service-icon">🔁</div><h3>Refinancing</h3><p>Review rates, fees and structure to check whether a refinance is worth it.</p><a href="/refinancing" class="text-link">Explore refinance guides</a></div>
+                <div class="service-card"><div class="service-icon">🏢</div><h3>Investment loans</h3><p>Compare serviceability and policy differences for investor lending.</p><a href="/investment-loans" class="text-link">Compare investment loan options</a></div>
+                <div class="service-card"><div class="service-icon">📍</div><h3>Local guidance</h3><p>Speak with a broker who supports borrowers in $Suburb and surrounding areas.</p><a href="/seo-resource-links" class="text-link">See more mortgage guides</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scheme-section alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Related pages you may find helpful</h2>
+                <p>Helpful links for buyers, refinancers and investors doing local research.</p>
+            </div>
+            <div class="topic-grid">
+                <a class="topic-card" href="/borrowing-power-calculator"><span>Calculator</span><h3>Borrowing power calculator</h3><p>Estimate how much you may be able to borrow before making an offer.</p><strong>Open</strong></a>
+                <a class="topic-card" href="/first-home-buyers"><span>Home buyer</span><h3>First home buyers</h3><p>Compare grants, deposit options and lender guidance for new buyers.</p><strong>Open</strong></a>
+                <a class="topic-card" href="/refinancing"><span>Refinancing</span><h3>Refinance</h3><p>See if you could reduce repayments or release equity with a smarter loan.</p><strong>Open</strong></a>
+                <a class="topic-card" href="/seo-resource-links"><span>Resource hub</span><h3>All mortgage guides</h3><p>Jump to the broader CredQ guide library and local loan pages.</p><strong>Open</strong></a>
             </div>
         </div>
     </section>

@@ -1,0 +1,30 @@
+# CredQ
+
+CredQ is an Australian mortgage broking business helping clients with first home buyer loans, refinancing, investment loans, and borrowing power strategy.
+
+## Core Services
+- First home buyer guidance
+- Refinancing strategy and lender comparison
+- Investment loan strategy
+- Borrowing power and loan structure clarity
+
+## Service Area
+- Australia (based in NSW)
+
+## Contact
+- Website: https://credq.com.au/
+- Phone: +61 470 388 310
+- Email: mortgage@credq.com.au
+
+## Key Pages
+- Home: https://credq.com.au/
+- First Home: https://credq.com.au/first-home
+- Investment: https://credq.com.au/investment
+- Refinance: https://credq.com.au/refinance
+- Borrowing Power Calculator: https://credq.com.au/borrowing-power-calculator
+- About: https://credq.com.au/about-us
+
+## Social Profiles
+- Facebook: https://www.facebook.com/credq.finance
+- LinkedIn: https://www.linkedin.com/company/credqfinance
+- Instagram: https://www.instagram.com/credq.finance/

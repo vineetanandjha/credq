@@ -38,6 +38,10 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
+# Vite build output for the ads SPA (synced into public/ads by scripts/sync-ads-build.mjs)
+dist/
+
+
 # node-waf configuration
 .lock-wscript
 

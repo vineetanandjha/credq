@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Repayment Calculator | CredQ</title>
+    <meta name="description" content="Calculate estimated monthly loan repayments based on loan amount, interest rate and loan term.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://credq.com.au/calculators/loan-repayment-calculator">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Loan Repayment Calculator | CredQ">
+    <meta property="og:description" content="Estimate your monthly home loan repayments with our simple calculator.">
+    <meta property="og:url" content="https://credq.com.au/calculators/loan-repayment-calculator">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .calculator-section { padding: 60px 0; background: #f8f9fa; }
+        .calculator-container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .calculator-input { margin: 20px 0; }
+        .calculator-input label { display: block; font-weight: 600; margin-bottom: 8px; }
+        .calculator-input input, .calculator-input select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        .calculator-result { margin-top: 30px; padding: 20px; background: #f0f8ff; border-left: 4px solid #0066cc; }
+        .calculator-result-value { font-size: 32px; font-weight: 700; color: #0066cc; margin: 10px 0; }
+        .calculator-btn { width: 100%; padding: 14px; background: #0066cc; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 20px; }
+        .calculator-btn:hover { background: #0052a3; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo"><a href="/"><img src="/logo.png" alt="CredQ Logo"></a></div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/first-home-buyers">First Home Buyers</a></li>
+                    <li><a href="/calculators/borrowing-capacity-calculator">Borrowing Power</a></li>
+                    <li><a href="#assessment" class="btn-primary">Get Assessment</a></li>
+                </ul>
+                <div class="hamburger"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="guide-hero">
+        <div class="container">
+            <h1>Loan Repayment Calculator</h1>
+            <p>Estimate your monthly home loan repayments based on loan amount, interest rate and loan term.</p>
+        </div>
+    </section>
+
+    <section class="calculator-section">
+        <div class="calculator-container">
+            <form id="repaymentCalc">
+                <div class="calculator-input">
+                    <label for="loanAmount">Loan Amount (AUD)</label>
+                    <input type="number" id="loanAmount" name="loanAmount" value="400000" min="1" step="10000" required>
+                </div>
+                <div class="calculator-input">
+                    <label for="interestRate">Annual Interest Rate (%)</label>
+                    <input type="number" id="interestRate" name="interestRate" value="6.5" min="0" max="15" step="0.1" required>
+                </div>
+                <div class="calculator-input">
+                    <label for="loanTerm">Loan Term (Years)</label>
+                    <input type="number" id="loanTerm" name="loanTerm" value="30" min="1" max="50" step="1" required>
+                </div>
+                <button type="button" class="calculator-btn" onclick="calculateRepayment()">Calculate Repayment</button>
+            </form>
+
+            <div id="result" class="calculator-result" style="display:none;">
+                <h3>Monthly Repayment</h3>
+                <div class="calculator-result-value" id="monthlyRepayment">$0</div>
+                <p><strong>Total Interest Over Life of Loan:</strong> <span id="totalInterest">$0</span></p>
+                <p><strong>Total Amount Paid:</strong> <span id="totalPaid">$0</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="scheme-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>How to use this calculator</h2>
+                <p>Enter your loan details to estimate monthly repayments.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><h3>Loan Amount</h3><p>The total you're borrowing from the lender (purchase price minus deposit).</p></div>
+                <div class="service-card"><h3>Interest Rate</h3><p>Your annual interest rate. Check current rates with lenders; this varies based on credit and market conditions.</p></div>
+                <div class="service-card"><h3>Loan Term</h3><p>How many years you'll repay the loan. Most mortgages are 20–30 years; shorter terms reduce interest paid but increase monthly repayment.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="assessment" class="contact">
+        <div class="container">
+            <div class="section-header"><h2>Get a personalized repayment estimate</h2><p>Talk to CredQ about rates and terms that suit your situation.</p></div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item"><h3>📞 Phone</h3><p><a href="tel:0470388310">0470 388 310</a></p></div>
+                    <div class="info-item"><h3>📧 Email</h3><p><a href="mailto:mortgage@credq.com.au">mortgage@credq.com.au</a></p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><img src="/logo.png" alt="CredQ Logo" class="footer-logo"><p>Your trusted partner in mortgage solutions.</p></div>
+                <div class="footer-section"><h4>Calculators</h4><ul><li><a href="/calculators/borrowing-capacity-calculator">Borrowing Capacity</a></li><li><a href="/calculators/loan-repayment-calculator">Loan Repayment</a></li><li><a href="/calculators/home-affordability-calculator">Affordability</a></li><li><a href="/calculators/stamp-duty-calculator">Stamp Duty</a></li></ul></div>
+                <div class="footer-section"><h4>Guides</h4><ul><li><a href="/first-home-buyers">First Home Buyers</a></li><li><a href="/refinancing">Refinancing</a></li></ul></div>
+                <div class="footer-section"><h4>Contact</h4><p><a href="mailto:mortgage@credq.com.au">mortgage@credq.com.au</a></p><p><a href="tel:0470388310">0470 388 310</a></p></div>
+            </div>
+            <div class="footer-bottom"><ul class="footer-legal-links footer-bottom-links"><li><a href="/privacy-policy">Privacy Policy</a></li><li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li></ul><p>&copy; 2026 CredQ Pty Ltd. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/message/WJ4AEAB5ZMPPP1" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><span class="whatsapp-text">Talk to us</span></a>
+    <script>
+        function calculateRepayment() {
+            const principal = parseFloat(document.getElementById('loanAmount').value);
+            const rate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+            const term = parseFloat(document.getElementById('loanTerm').value) * 12;
+            const monthly = principal * (rate * Math.pow(1 + rate, term)) / (Math.pow(1 + rate, term) - 1);
+            const total = monthly * term;
+            const interest = total - principal;
+            document.getElementById('monthlyRepayment').textContent = '$' + monthly.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('totalInterest').textContent = '$' + interest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('totalPaid').textContent = '$' + total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('result').style.display = 'block';
+        }
+        calculateRepayment();
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>
