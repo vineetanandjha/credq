@@ -16,6 +16,12 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
+    // Written only by scripts/publish-blog-post.mjs (Admin SDK) and updated by the
+    // onBlogPostCreated Cloud Function; no client access is needed or allowed.
+    match /blogPosts/{postId} {
+      allow read, write: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

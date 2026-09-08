@@ -3,7 +3,7 @@ import { hasFirebaseConfig, loadFirebase } from './firebaseClient';
 
 const metaPixelId = import.meta.env.VITE_META_PIXEL_ID || '1824219618568834';
 const metaAccessToken = import.meta.env.VITE_META_CAPI_ACCESS_TOKEN || '';
-const otpFeatureEnabled = true;
+const otpFeatureEnabled = false;
 const OTP_RESEND_COOLDOWN_SECONDS = 45;
 const OTP_RATE_LIMIT_LOCKOUT_SECONDS = 300;
 const OTP_MAX_SEND_ATTEMPTS = 3;
@@ -205,6 +205,7 @@ function App() {
   }, [normalizedPath]);
   const [leadForm, setLeadForm] = useState({ firstName: '', mobile: '', email: '', consent: false });
   const [leadCaptureError, setLeadCaptureError] = useState('');
+  const [formFailedAttempts, setFormFailedAttempts] = useState(0);
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const [leadCaptured, setLeadCaptured] = useState(false);
   const [leadDocId, setLeadDocId] = useState('');
@@ -225,7 +226,8 @@ function App() {
   const otpCooldownSeconds = Math.max(0, Math.ceil((otpCooldownUntil - Date.now()) / 1000));
   const otpAttemptsRemaining = Math.max(0, OTP_MAX_SEND_ATTEMPTS - otpSendAttempts);
   const hasEmail = leadForm.email.trim().length > 0;
-  const canContinueAfterOtp = otpState.verified && hasEmail && leadForm.consent;
+  // When otpFeatureEnabled is false, skip the verification requirement entirely (flip the flag to re-enable OTP later).
+  const canContinueAfterOtp = (!otpFeatureEnabled || otpState.verified) && hasEmail && leadForm.consent;
   const showMobileStickyCta = usesEmbeddedCalendly && !isBookingSectionVisible;
   const calendlyUrl = useMemo(() => {
     if (!usesEmbeddedCalendly) return buildCalendlyUrl({});
@@ -655,6 +657,7 @@ function App() {
         setOtpCooldownUntil((prev) => Math.max(prev, Date.now() + (OTP_RATE_LIMIT_LOCKOUT_SECONDS * 1000)));
       }
       console.warn('OTP send failed', error);
+      setFormFailedAttempts((prev) => prev + 1);
       setOtpState((prev) => ({
         ...prev,
         sending: false,
@@ -699,6 +702,7 @@ function App() {
       }
     } catch (error) {
       console.warn('OTP verify failed', error);
+      setFormFailedAttempts((prev) => prev + 1);
       setOtpState((prev) => ({ ...prev, verifying: false, verified: false, message: getOtpVerifyErrorMessage(error) }));
     }
   };
@@ -713,7 +717,9 @@ function App() {
   }, [otpState.code, otpState.sent, otpState.verified, otpState.verifying, otpState.confirmationResult]);
 
   useEffect(() => {
-    if (!usesEmbeddedCalendly || !canContinueAfterOtp || leadCaptured) return;
+    // Only the OTP flow needs this auto-continue effect (verification finishing is an async
+    // event, not a click). The non-OTP flow already saves explicitly from handleLeadSubmit.
+    if (!usesEmbeddedCalendly || !otpFeatureEnabled || !canContinueAfterOtp || leadCaptured) return;
     void saveLeadRecordAndContinue();
   }, [canContinueAfterOtp, leadCaptured, usesEmbeddedCalendly]);
 
@@ -776,28 +782,39 @@ function App() {
     event.preventDefault();
     setLeadCaptureError('');
 
+    if (!leadForm.firstName.trim()) {
+      setLeadCaptureError('Please enter your first name.');
+      setFormFailedAttempts((prev) => prev + 1);
+      return;
+    }
+
     if (!leadForm.mobile.trim()) {
       setLeadCaptureError('Please enter your mobile number.');
+      setFormFailedAttempts((prev) => prev + 1);
       return;
     }
 
     if (!isAuLocalMobile(leadForm.mobile)) {
       setLeadCaptureError('Please enter a valid Australian mobile in local format (04xxxxxxxx).');
+      setFormFailedAttempts((prev) => prev + 1);
       return;
     }
 
     if (!leadForm.email.trim()) {
       setLeadCaptureError('Please enter your email so we can send your meeting confirmation.');
+      setFormFailedAttempts((prev) => prev + 1);
       return;
     }
 
     if (!leadForm.consent) {
       setLeadCaptureError('Please provide consent so we can contact you about your enquiry.');
+      setFormFailedAttempts((prev) => prev + 1);
       return;
     }
 
     if (otpFeatureEnabled && !otpState.verified) {
       setLeadCaptureError('Please verify your mobile number with OTP before continuing.');
+      setFormFailedAttempts((prev) => prev + 1);
       return;
     }
 
@@ -899,6 +916,7 @@ function App() {
               <div className="mt-3 flex flex-wrap gap-2 text-sm font-semibold text-slate-700">
                 <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-amber-800">★★★★★ Rated 5.0 on Google</span>
                 <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-emerald-800">500+ strategy sessions delivered</span>
+                <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sky-800">We usually respond within 1 business hour</span>
               </div>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">{offer.subtitle}</p>
               <p className="mt-3 max-w-xl text-base text-slate-500">{offer.intro}</p>
@@ -920,6 +938,17 @@ function App() {
                 <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">No pressure advice</span>
                 <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">Clear next steps</span>
               </div>
+
+              {usesEmbeddedCalendly ? (
+                <div className="mt-6 grid gap-2 lg:hidden">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">What you’ll leave with</p>
+                  {offer.outcomes.map((item) => (
+                    <div key={item} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-700">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
 
             <div className={usesEmbeddedCalendly ? 'hidden rounded-[28px] border border-slate-200 bg-slate-950 p-6 text-white sm:p-8 lg:block' : 'rounded-[28px] border border-slate-200 bg-slate-950 p-6 text-white sm:p-8'}>
@@ -966,8 +995,9 @@ function App() {
                 type="text"
                 value={leadForm.firstName}
                 onChange={(event) => handleLeadField('firstName', event.target.value)}
-                placeholder="First name (optional)"
+                placeholder="First name *"
                 className="rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-500"
+                required
               />
               <input
                 type="tel"
@@ -1049,6 +1079,11 @@ function App() {
               </label>
 
               {leadCaptureError ? <p className="text-sm text-rose-600 sm:col-span-2">{leadCaptureError}</p> : null}
+              {formFailedAttempts > 0 ? (
+                <p className="text-sm font-medium text-slate-700 sm:col-span-2">
+                  Having trouble? <a href="tel:0470388310" className="underline">Call us instead on 0470 388 310</a>
+                </p>
+              ) : null}
               {otpFeatureEnabled ? (
                 leadCaptured ? <p className="text-sm font-medium text-slate-700 sm:col-span-2">Details saved. Opening booking below...</p> : null
               ) : (
@@ -1091,7 +1126,7 @@ function App() {
               ) : null}
               {!canContinueAfterOtp ? (
               <div className="absolute inset-0 flex items-center justify-center bg-white/85 p-5 text-center text-sm font-medium text-slate-700">
-                Verify mobile, then add email and tick consent to continue to booking.
+                Add your name, mobile and email above, then tick consent to continue to booking.
               </div>
               ) : null}
             </div>
