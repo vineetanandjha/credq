@@ -286,24 +286,28 @@ async function publishGbpLocalPost(post) {
   return responseBody;
 }
 
-exports.onBlogPostCreated = onDocumentCreated({
-  document: 'blogPosts/{postId}',
-  region: 'australia-southeast1',
-  secrets: [GBP_CLIENT_ID, GBP_CLIENT_SECRET, GBP_REFRESH_TOKEN, GBP_ACCOUNT_ID, GBP_LOCATION_ID]
-}, async (event) => {
-  const post = event.data?.data();
-  const postRef = event.data?.ref;
+// Helper to publish the next pending blog post to GBP
+async function processNextGbpPost() {
+  const snapshot = await db
+    .collection('blogPosts')
+    .where('gbp.status', '==', 'pending')
+    .orderBy('createdAt', 'asc')
+    .limit(1)
+    .get();
 
-  if (!post || !postRef) return;
-
-  if (post.status !== 'published' || !post.url) {
-    logger.info('onBlogPostCreated skipped: post is not published or missing url', { postId: event.params.postId });
-    return;
+  if (snapshot.empty) {
+    logger.info('processNextGbpPost: no pending blog posts to publish to GBP.');
+    return { ok: true, published: false, message: 'No pending posts in queue' };
   }
+
+  const docSnap = snapshot.docs[0];
+  const post = docSnap.data();
+
+  logger.info(`processNextGbpPost: publishing post "${post.title}" (${docSnap.id}) to GBP...`);
 
   try {
     const gbpResult = await publishGbpLocalPost(post);
-    await postRef.set({
+    await docSnap.ref.set({
       gbp: {
         status: 'published',
         postName: gbpResult?.name || null,
@@ -311,16 +315,64 @@ exports.onBlogPostCreated = onDocumentCreated({
         error: null
       }
     }, { merge: true });
+
+    logger.info(`processNextGbpPost: successfully published "${post.title}" to GBP.`);
+    return { ok: true, published: true, postId: docSnap.id, title: post.title };
   } catch (error) {
-    logger.error('onBlogPostCreated: publishGbpLocalPost failed', error);
-    await postRef.set({
+    logger.error(`processNextGbpPost: failed for "${post.title}"`, error);
+    await docSnap.ref.set({
       gbp: {
         status: 'failed',
         publishedAt: null,
         error: String(error)
       }
     }, { merge: true });
+
+    return { ok: false, published: false, postId: docSnap.id, error: String(error) };
   }
+}
+
+// Scheduled Drip-Feed Publisher: Runs every Monday and Thursday at 9:00 AM Sydney time (2 posts per week)
+exports.scheduledGbpPublisher = onSchedule({
+  schedule: '0 9 * * 1,4',
+  timeZone: 'Australia/Sydney',
+  region: 'australia-southeast1',
+  secrets: [GBP_CLIENT_ID, GBP_CLIENT_SECRET, GBP_REFRESH_TOKEN, GBP_ACCOUNT_ID, GBP_LOCATION_ID]
+}, async () => {
+  const result = await processNextGbpPost();
+  logger.info('scheduledGbpPublisher completed', result);
+});
+
+// Manual/HTTP trigger to immediately publish the next pending post in the GBP queue
+exports.triggerGbpDripPost = onRequest({
+  region: 'australia-southeast1',
+  secrets: [GBP_CLIENT_ID, GBP_CLIENT_SECRET, GBP_REFRESH_TOKEN, GBP_ACCOUNT_ID, GBP_LOCATION_ID, CRON_TOKEN]
+}, async (req, res) => {
+  try {
+    const expectedToken = CRON_TOKEN.value() || '';
+    const providedToken = req.get('x-cron-token') || req.query.token || '';
+
+    if (expectedToken && providedToken !== expectedToken) {
+      res.status(401).json({ ok: false, error: 'unauthorized' });
+      return;
+    }
+
+    const result = await processNextGbpPost();
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error('triggerGbpDripPost failed', error);
+    res.status(500).json({ ok: false, error: String(error) });
+  }
+});
+
+exports.onBlogPostCreated = onDocumentCreated({
+  document: 'blogPosts/{postId}',
+  region: 'australia-southeast1',
+  secrets: [GBP_CLIENT_ID, GBP_CLIENT_SECRET, GBP_REFRESH_TOKEN, GBP_ACCOUNT_ID, GBP_LOCATION_ID]
+}, async (event) => {
+  // Marked as queued/pending for the drip-feed scheduler.
+  // Immediate auto-post is disabled to avoid publishing all posts at once.
+  logger.info('onBlogPostCreated: new blog post registered for scheduled GBP drip feed', { postId: event.params.postId });
 });
 
 // One-off/manual catch-up for leads captured before the Google Sheets sync existed.
